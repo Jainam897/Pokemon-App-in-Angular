@@ -1,0 +1,60 @@
+<!-- <div
+     >
+      <mat-card class="pokemon-card" >
+        <mat-card-title>hello</mat-card-title>
+        <div class="id">1</div>
+        <div class="background-image">
+          <img mat-card-image />
+        </div>
+        <mat-card-content>
+          <div style="display: block;">
+            <div  class="types"
+              >
+             ho areyou?
+            </div>
+          
+
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div> -->
+
+
+<div  class="loading" style="text-align: center;" *ngIf="!pokemonsLoaded">
+  <mat-spinner></mat-spinner>
+  LOADING POKEMON....
+</div>
+
+<div>
+  <div *ngIf="pokemonsLoaded && pokemons" >
+    <div *ngFor="let pokemon of pokemons.results">
+      <mat-card class="pokemon-card" *ngIf="pokemon.details">
+        <mat-card-title  class="setmiddletitle">{{ pokemon.name | titlecase }}</mat-card-title>
+
+        <div class="setmiddle">Weight : {{pokemon.details.weight}}</div>
+        <div class="setmiddle">Height : {{pokemon.details.height}}</div>
+        <div class="setmiddle">Order : {{pokemon.details.order}}</div>
+        <div class="setmiddle">Base Experience : {{pokemon.details.base_experience}} </div>
+        <div class="setmiddle">Description : {{pokemon.description}}</div>
+        
+          <div class="setmiddle">
+            <div>
+              <label>Types: </label>
+            </div>
+            <div *ngFor="let type of pokemon.details.types">
+              {{ type.type.name | titlecase }}
+            </div>
+          </div>
+        
+        
+        <div class="setmiddle">
+          <img style="width: 200px" height="200px" mat-card-image src="{{ pokemon.details.sprites.front_default }}"
+            alt="photo of {{ pokemon.name }}" />
+        </div>
+       
+      </mat-card>
+    </div>
+  </div>
+
+
+</div>
